@@ -1,0 +1,39 @@
+/* Base styles for the entire application */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+}
+
+/* Optimized animation keyframes - only use transform and opacity for better performance */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Class to disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .card {
+    animation: none !important;
+    transform: none !important;
+  }
+}
