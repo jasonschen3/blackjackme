@@ -21,13 +21,12 @@ export const gameResultEnum = pgEnum("game_result", [
 
 // Users table
 export const users = pgTable("users", {
-  id: uuid("id").primaryKey(),
-  username: varchar("username", { length: 255 }).notNull().unique(),
-  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  id: varchar("id", { length: 255 }).primaryKey(),
+  nickname: varchar("username", { length: 255 }).unique(),
   email: varchar("email", { length: 255 }).notNull().unique(),
 
   // Account balance
-  tokens: integer("tokens").notNull().default(1000),
+  tokens: integer("tokens").notNull().default(0),
   totalWinnings: integer("total_winnings").default(0),
   totalLosses: integer("total_losses").default(0),
 
