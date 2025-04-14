@@ -20,7 +20,6 @@ export const handleSignIn = (email: string, password: string) => {
 export const handleGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
-  console.log("In google", result);
 
   // Save in drizzle db
   // TODO

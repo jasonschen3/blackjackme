@@ -120,24 +120,24 @@ app.post("/buy100", async (req, res) => {
   }
 });
 
-app.post("/buy1000", async (req, res) => {});
+app.get("/tokens", async (req, res) => {
+  const { uid } = req.query;
 
-app.get("/test", async (req, res) => {
-  const result = await db.select().from(schema.tests);
-  // Drizzle returns .rows automatically
-  console.log(result);
-
-  res.json(result);
-});
-
-app.post("/test", async (req, res) => {
-  const { name } = req.body;
   try {
-    const result = await db.insert(tests).values({ name });
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error("Error creating menu item:", err);
-    res.status(500).send("Internal server error");
+    const user = await db
+      .select()
+      .from(schema.users)
+      .where(eq(schema.users.id, uid))
+      .limit(1); // Ensure only one user is returned
+
+    if (user.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({ tokens: user.tokens });
+  } catch (error) {
+    console.error("Couldn't retrieve tokens", error);
+    res.status(500).json({ error: "Failed to retrieve tokens" });
   }
 });
 

@@ -33,7 +33,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await handleGoogle();
-      navigate("/game");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       setError("Failed to sign in with Google");

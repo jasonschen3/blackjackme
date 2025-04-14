@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Header from "./Header";
 
 interface Card {
   suit: string; // "CLUB", "DIAMOND", "HEART", "SPADE"
@@ -7,9 +8,7 @@ interface Card {
   imagePath: string;
 }
 
-// Game component
 const Game = () => {
-  // Game state
   const [deck, setDeck] = useState<Card[]>([]);
   const [playerHand, setPlayerHand] = useState<Card[]>([]);
   const [dealerHand, setDealerHand] = useState<Card[]>([]);
@@ -18,7 +17,7 @@ const Game = () => {
   const [gameState, setGameState] = useState("betting"); // betting, playing, dealerTurn, gameOver
   const [message, setMessage] = useState("Place your bet!");
   const [bet, setBet] = useState(10);
-  const [tokens, setTokens] = useState(1000);
+  const [tokens, setTokens] = useState(0);
   const [showDealerFirstCard, setShowDealerFirstCard] = useState(false);
   const [isDealing, setIsDealing] = useState(false);
 
@@ -66,7 +65,7 @@ const Game = () => {
   }, [dealerScore, gameState]);
 
   // Reset game for a new hand
-  const resetGame = () => {
+  const resetGame = async () => {
     setGameState("betting");
     setMessage("Place your bet! (Max: 100 tokens)");
     setPlayerHand([]);
@@ -75,6 +74,8 @@ const Game = () => {
     setDealerScore(0);
     setShowDealerFirstCard(false);
     setIsDealing(false);
+
+    // TODO query tokens
 
     // Reshuffle if deck is getting low
     if (deck.length < 52 * 6 * 0.25) {
@@ -341,6 +342,7 @@ const Game = () => {
 
   return (
     <div className="blackjack-game">
+      <Header />
       <div className="game-header">
         <h2>♠️ Blackjack ♦️</h2>
         <div className="token-display">

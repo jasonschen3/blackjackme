@@ -1,7 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { handleSignOut } from "../firebase/auth";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -18,7 +23,12 @@ const Header: React.FC = () => {
           Leaderboard
         </Link>
       </nav>
-      <button className="login-button">Login</button>
+      <button className="login-button" onClick={handleLogin}>
+        Login
+      </button>
+      <button className="sign-out" onClick={handleSignOut}>
+        Signout
+      </button>
     </header>
   );
 };

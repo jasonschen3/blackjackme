@@ -12,17 +12,13 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       <Header />
-      <h1 className="title">🎰 BlackJack Me 🃏</h1>
+      <h1 className="title">BlackJack Me</h1>
 
       <div className="card">
-        <p className="description">
-          Welcome to BlackJack Me! Challenge our dealer in real-time and win
-          tokens that you can cash out instantly. Each token is worth one penny
-          - start small, win big!
-        </p>
+        <p className="description">Welcome</p>
 
         <button className="start-button" onClick={handlePlay}>
-          Play Now 🎲
+          Play Now
         </button>
 
         <div className="token-info">

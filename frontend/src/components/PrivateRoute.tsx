@@ -7,6 +7,7 @@ export default function PrivateRoute({
   children: React.ReactNode;
 }) {
   const { currentUser } = useAuth();
+  console.log(currentUser);
 
   return currentUser ? <>{children}</> : <Navigate to="/login" />;
 }
